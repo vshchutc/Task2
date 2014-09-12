@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<style type="text/css">
+			.form{
+				margin-top: 20%;
+				text-align: center;
+			}
+		</style>
+		<script type='text/javascript'>
+		</script>
+	</head>
+	<body>
+		<div class="form">
+			<form >
+			<h1>Teachers and their Pupils</h1>
+				<select id="teacher">
+				</select>
+
+				<select  id="pupil" >
+				 <option>Choose  pupil...</option>
+					<script type='text/javascript'>
+
+					</script>
+				</select> 
+			</form>
+		</div>
+		
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type='text/javascript'>
+			$(document).ready(function() {
+				$.getJSON("list.json", function(data){
+					$('#teacher').append("<option>  Choose teacher </option>");
+					$.each(data.teachers, function(index, teachers) 
+					{
+						$('#teacher').append('<option value = teachers.teacherName>  ' + teachers.teacherName + '</option>');
+
+					});	
+
+				});
+			});
+			$(document).ready(function() {
+				$.getJSON("list.json", function(data){
+					
+
+					$.each(data.teachers, function(index, teachers) 
+					{
+						$('#pupil').append('<option value = teachers.pupils>  ' + teachers.pupils + '</option>');
+					});	
+				});
+			});
+		</script>
+	</body>
+</html>

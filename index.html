@@ -8,6 +8,9 @@
 				margin-top: 20%;
 				text-align: center;
 			}
+			#pupil{
+				width:300px;
+			}
 		</style>
 		<script type='text/javascript'>
 		</script>
@@ -20,7 +23,7 @@
 				</select>
 
 				<select  id="pupil" >
-				 <option>Choose  pupil...</option>
+				 <option>Choose teacher first</option>
 					<script type='text/javascript'>
 
 					</script>
@@ -33,24 +36,41 @@
 			$(document).ready(function() {
 				$.getJSON("list.json", function(data){
 					$('#teacher').append("<option>  Choose teacher </option>");
-					$.each(data.teachers, function(index, teachers) 
-					{
-						$('#teacher').append('<option value = teachers.teacherName>  ' + teachers.teacherName + '</option>');
-
-					});	
-
-				});
-			});
-			$(document).ready(function() {
-				$.getJSON("list.json", function(data){
 					
-
 					$.each(data.teachers, function(index, teachers) 
 					{
-						$('#pupil').append('<option value = teachers.pupils>  ' + teachers.pupils + '</option>');
+						$('#teacher').append('<option value ='+teachers.teacherName+'>  ' + teachers.teacherName + '</option>');
+
 					});	
+
 				});
 			});
+			
+				//$.getJSON("list.json", function(data){
+					$(document).ready(function(){
+ 						$("#teacher").change(function(){
+
+ 							selectedTeacherName = $('#teacher :selected').text();
+ 								usedTeachName=selectedTeacherName.slice(2);
+ 								pupilList=new Array();
+ 								$.getJSON("list.json", function(data){
+ 									$.each(data.teachers, function(i, val) {  
+ 										if(this.teacherName == usedTeachName)	
+         							{ pupilList=pupilList.concat(this.pupils);
+         							 	if(pupilList.length==0){
+         							 		$('#pupil').find('option').remove().end().append("<option>  This teacher doesn't have a students </option>");
+         							 		}
+         							 	else{for(var i = 0; i<pupilList.length; i++){
+         							 		$('#pupil').append('<option value ='+pupilList[i]+'>  ' + pupilList[i] + '</option>');
+         							 	};
+         							};
+         						};
+         					});
+ 								});
+							
+						});
+					});
+			
 		</script>
 	</body>
 </html>

@@ -1,16 +1,10 @@
 {   "teachers":    [
                   {"teacherName":"Mrs. Marple",
-                  "pupils" : [ { "pupilName":"John Marple" },
-                                { "pupilName":"Lion Marple" }
-                                ] 
+                  "pupils" : ["John Marple" ,"Lion Marple" ] 
                   } ,
 
                   {"teacherName":"Ms. Strip",
-                    "pupils"     : [ 
-                                    {"pupilName":"Sally Strip"},
-                                    {"pupilName":"Jim Strip"},
-                                    {"pupilName":"Diana Strip"},
-                                    {"pupilName":"Andrew Strip"}] } ,
+                    "pupils"     : ["Sally Strip","Jim Strip","Diana Strip","Andrew Strip"] } ,
                   {"teacherName":"Ms. Obama",
                     "pupils": [] }
                 ]
